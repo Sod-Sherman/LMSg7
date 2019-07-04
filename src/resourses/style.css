@@ -1,0 +1,81 @@
+.root {
+	-fx-background-image:url(bg.jpg);
+    -fx-background-color: #42444d;
+    -fx-text-fill: #bbcadb;
+}
+
+.button {
+    -fx-background-color: #f54242;
+    -fx-text-fill: #f4fffe;
+}
+
+.button:hover {
+    -fx-text-fill: #f2ff00;
+    -fx-cursor: hand;
+}
+
+.label{
+	-fx-text-fill: #fff;
+}
+
+#warning{
+	-fx-text-fill: red;
+}
+
+#bgUser{
+	-fx-background-color: #fff;
+	-fx-opacity:0.8;
+}
+
+
+#bgUser .label{
+	-fx-text-fill: #000;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane
+{
+    -fx-tab-min-width:90px;
+}
+
+.tab{
+    -fx-background-insets: 0 1 0 1,0,0;
+}
+.tab-pane .tab
+{
+    -fx-background-color: #3c3c3c;
+
+}
+
+.tab-pane .tab:selected
+{
+    -fx-background-color: #e6e6e6;
+    -fx-opacity: 0.8;
+}
+
+.tab .tab-label { 
+ 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #96b946;
+   
+}
+
+.tab:selected .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: #828282;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-opacity: 0.8;
+}
+
+.tab:disabled
+{
+-fx-opacity: 0;
+}
+.tab:disabled:hover
+{
+-fx-opacity: 0;
+}

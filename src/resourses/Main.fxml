@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="857.0" prefWidth="1335.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Services">
+   <children>
+      <TabPane fx:id="tabPane" cacheShape="false" layoutX="229.0" layoutY="106.0" prefHeight="500.0" prefWidth="791.0" tabClosingPolicy="UNAVAILABLE" visible="false">
+         <tabs>
+            <Tab fx:id="CheckOutTab" onSelectionChanged="#checkOutInit" text="Check Out">
+               <content>
+                  <AnchorPane disable="true" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane id="bgUser" prefHeight="446.0" prefWidth="720.0">
+                           <children>
+                              <Label layoutX="33.0" layoutY="56.0" text="Select Book:" />
+                              <Label layoutX="377.0" layoutY="56.0" text="Select Member:" />
+                              <Label fx:id="selectBookEmpty" layoutX="147.0" layoutY="56.0" prefHeight="27.0" prefWidth="216.0" />
+                              <Button fx:id="checkOutBtn" layoutX="599.0" layoutY="393.0" mnemonicParsing="false" onAction="#checkOutAction" prefHeight="25.0" text="Check Out" />
+                           </children>
+                        </Pane>
+                        <ListView fx:id="memListView" layoutX="378.0" layoutY="83.0" prefHeight="300.0" prefWidth="330.0" />
+                        <ListView fx:id="bookListView" layoutX="32.0" layoutY="84.0" prefHeight="300.0" prefWidth="330.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="CheckListTab" onSelectionChanged="#viewRecords" text="Checkout List">
+               <content>
+                  <AnchorPane disable="true" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane id="bgUser" prefHeight="446.0" prefWidth="720.0">
+                           <children>
+                              <TextField fx:id="searchField1" layoutX="7.0" layoutY="7.0" prefHeight="25.0" prefWidth="167.0" />
+                              <Button fx:id="printBtn" layoutX="400.0" layoutY="7.0" mnemonicParsing="false" onAction="#printRecords" prefHeight="25.0" text="Print Records" />
+                              <TableView fx:id="tableView1" layoutX="7.0" layoutY="46.0" prefHeight="392.0" prefWidth="705.0">
+                                 <columns>
+                                    <TableColumn fx:id="isbnCol" prefWidth="58.0" text="ISBN" />
+                                    <TableColumn fx:id="titleCol" prefWidth="124.0" text="Title" />
+                                    <TableColumn fx:id="checkDateCol" prefWidth="92.0" text="Checkout Date" />
+                                    <TableColumn fx:id="dueCol" prefWidth="97.0" text="Due Date" />
+                                    <TableColumn fx:id="overCol" prefWidth="101.0" text="OverDue" />
+                                    <TableColumn fx:id="fineCol" prefWidth="57.0" text="Fine" />
+                                    <TableColumn fx:id="paidDateCol" prefWidth="170.0" text="Member" />
+                                 </columns>
+                              </TableView>
+                              <Button fx:id="searchBtn" layoutX="183.0" layoutY="7.0" mnemonicParsing="false" onAction="#searchRecord" prefHeight="25.0" text="Search by ISBN" />
+                              <Button fx:id="printOverDueBtn" layoutX="576.0" layoutY="7.0" mnemonicParsing="false" onAction="#printOverDueCalled" prefHeight="25.0" text="Print OverDue" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="BookListTab" onSelectionChanged="#viewBook" text="Book List">
+               <content>
+                  <AnchorPane disable="true" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane id="bgUser" prefHeight="446.0" prefWidth="720.0">
+                           <children>
+                              <Button fx:id="resetBtn" layoutX="352.0" layoutY="8.0" mnemonicParsing="false" onAction="#restSearch" prefHeight="25.0" prefWidth="100.0" text="Reset" />
+                              <TableView fx:id="tableView" layoutX="42.0" layoutY="51.0" prefHeight="392.0" prefWidth="636.0">
+                                 <columns>
+                                    <TableColumn fx:id="isbn" prefWidth="77.0" text="ISBN" />
+                                    <TableColumn fx:id="isbn1" prefWidth="75.0" text="copyID" />
+                                    <TableColumn fx:id="title" prefWidth="130.0" text="Title" />
+                                    <TableColumn fx:id="author" prefWidth="103.0" text="First Author" />
+                                    <TableColumn fx:id="copyNum" prefWidth="68.0" text="Copies" />
+                                    <TableColumn fx:id="remDays" prefWidth="111.0" text="Borrow Days" />
+                                    <TableColumn fx:id="status" prefWidth="71.0" text="Status" />
+                                 </columns>
+                              </TableView>
+                              <Button fx:id="searchBtn" layoutX="243.0" layoutY="8.0" mnemonicParsing="false" onAction="#searchBook" prefHeight="25.0" prefWidth="100.0" text="Search" />
+                              <TextField fx:id="search" layoutX="42.0" layoutY="9.0" prefHeight="25.0" prefWidth="194.0" text="Book Title" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="addBookTab" text="Add Book">
+               <content>
+                  <AnchorPane disable="true" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane id="bgUser" prefHeight="446.0" prefWidth="720.0">
+                           <children>
+                              <Label layoutX="23.0" layoutY="37.0" prefHeight="27.0" prefWidth="98.0" text="Title:" />
+                              <Label layoutX="23.0" layoutY="103.0" text="ISBN: " />
+                              <TextField fx:id="titleField" layoutX="23.0" layoutY="63.0" />
+                              <TextField fx:id="isbnField" layoutX="23.0" layoutY="130.0" />
+                              <TextField fx:id="borrowLimitField" layoutX="23.0" layoutY="197.0" />
+                              <TextField fx:id="copyNumField" layoutX="23.0" layoutY="276.0" />
+                              <CheckBox fx:id="availableCheckBox" layoutX="33.0" layoutY="337.0" mnemonicParsing="false" text="Available" />
+                              <TextField fx:id="fnameField" layoutX="263.0" layoutY="63.0" />
+                              <TextField fx:id="lnameField" layoutX="495.0" layoutY="65.0" />
+                              <TextField fx:id="streetField" layoutX="260.0" layoutY="140.0" />
+                              <TextField fx:id="cityField" layoutX="495.0" layoutY="140.0" />
+                              <TextField fx:id="stateField" layoutX="263.0" layoutY="210.0" />
+                              <TextField fx:id="zipField" layoutX="495.0" layoutY="210.0" />
+                              <TextField fx:id="phoneField" layoutX="263.0" layoutY="276.0" />
+                              <Button fx:id="addMoreAuthor" layoutX="498.0" layoutY="276.0" mnemonicParsing="false" text="add more authors" />
+                              <Button fx:id="addBookBtn" layoutX="370.0" layoutY="364.0" mnemonicParsing="false" onAction="#addBook" prefHeight="25.0" prefWidth="100.0" text="Finish" />
+                              <Label layoutX="495.0" layoutY="38.0" prefHeight="27.0" prefWidth="99.0" text="Last name" />
+                              <Label layoutX="23.0" layoutY="173.0" text="Borrow Day Limit" />
+                              <Label layoutX="342.0" layoutY="14.0" text="Author (s)">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="263.0" layoutY="36.0" prefHeight="27.0" prefWidth="116.0" text="First Name" />
+                              <Label layoutX="85.0" layoutY="14.0" text="Book">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Separator prefHeight="0.0" prefWidth="700.0" />
+                              <Label layoutX="267.0" layoutY="113.0" prefHeight="27.0" prefWidth="121.0" text="Street" />
+                              <Label layoutX="496.0" layoutY="113.0" prefHeight="27.0" prefWidth="106.0" text="City" />
+                              <Label layoutX="263.0" layoutY="183.0" prefHeight="27.0" prefWidth="122.0" text="State" />
+                              <Label layoutX="498.0" layoutY="183.0" prefHeight="27.0" prefWidth="103.0" text="ZIP" />
+                              <Label layoutX="263.0" layoutY="249.0" prefHeight="27.0" prefWidth="122.0" text="Phone" />
+                              <Label layoutX="23.0" layoutY="249.0" text="How many copies" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="addStaffTab" text="Add Staff">
+               <content>
+                  <AnchorPane disable="true" minHeight="0.0" minWidth="0.0" prefHeight="442.0" prefWidth="1029.0">
+                     <children>
+                        <Pane id="bgUser" prefHeight="446.0" prefWidth="720.0">
+                           <children>
+                              <TextField fx:id="firstName" layoutX="93.0" layoutY="42.0" />
+                              <TextField fx:id="lastName" layoutX="402.0" layoutY="42.0" />
+                              <TextField fx:id="lastName2" layoutX="93.0" layoutY="121.0" />
+                              <PasswordField fx:id="passForAddStaff" layoutX="402.0" layoutY="121.0" />
+                              <TextField fx:id="city" layoutX="93.0" layoutY="198.0" />
+                              <TextField fx:id="street" layoutX="402.0" layoutY="198.0" />
+                              <TextField fx:id="state" layoutX="93.0" layoutY="262.0" />
+                              <TextField fx:id="zip" layoutX="402.0" layoutY="262.0" />
+                              <TextField fx:id="phone" layoutX="93.0" layoutY="332.0" />
+                              <CheckBox fx:id="ad" layoutX="403.0" layoutY="323.0" mnemonicParsing="false" text="Adminstrator" />
+                              <CheckBox fx:id="lib" layoutX="561.0" layoutY="323.0" mnemonicParsing="false" text="LIBRARIAN" />
+                              <Button fx:id="addMemBtn" layoutX="526.0" layoutY="352.0" mnemonicParsing="false" onAction="#addMember" prefHeight="25.0" prefWidth="100.0" text="Add" />
+                              <Label layoutX="93.0" layoutY="231.0" prefHeight="27.0" prefWidth="122.0" text="State" />
+                              <Label layoutX="402.0" layoutY="238.0" prefHeight="27.0" prefWidth="103.0" text="ZIP" />
+                              <Label layoutX="403.0" layoutY="15.0" text="Last Name " />
+                              <Label layoutX="93.0" layoutY="14.0" prefHeight="35.0" prefWidth="134.0" text="First Name" />
+                              <Label layoutX="93.0" layoutY="305.0" prefHeight="27.0" prefWidth="122.0" text="Phone" />
+                              <Label layoutX="403.0" layoutY="93.0" prefHeight="35.0" prefWidth="133.0" text="Password" />
+                              <Label layoutX="95.0" layoutY="93.0" text="User Name" />
+                              <Label layoutX="93.0" layoutY="163.0" prefHeight="27.0" prefWidth="106.0" text="City" />
+                              <Label layoutX="402.0" layoutY="172.0" prefHeight="27.0" prefWidth="121.0" text="Street" />
+                              <Label layoutX="403.0" layoutY="305.0" text="Staff Rolel" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="addMemberTab" text="Add Member">
+               <content>
+                  <AnchorPane disable="true" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane id="bgUser" prefHeight="446.0" prefWidth="720.0">
+                           <children>
+                              <TextField fx:id="memName" layoutX="93.0" layoutY="42.0" />
+                              <TextField fx:id="memLName" layoutX="402.0" layoutY="42.0" />
+                              <TextField fx:id="memMembID" layoutX="93.0" layoutY="140.0" />
+                              <TextField fx:id="memStreet" layoutX="402.0" layoutY="140.0" />
+                              <TextField fx:id="memcity" layoutX="93.0" layoutY="242.0" />
+                              <TextField fx:id="memState" layoutX="405.0" layoutY="241.0" />
+                              <TextField fx:id="memeZip" layoutX="93.0" layoutY="332.0" />
+                              <TextField fx:id="memPhone" layoutX="402.0" layoutY="332.0" />
+                              <Button fx:id="addMemBtn1" layoutX="532.0" layoutY="389.0" mnemonicParsing="false" onAction="#addMemberUser" prefHeight="25.0" prefWidth="100.0" text="Add" />
+                              <Label layoutX="92.0" layoutY="210.0" prefHeight="27.0" prefWidth="106.0" text="City" />
+                              <Label layoutX="396.0" layoutY="210.0" prefHeight="27.0" prefWidth="122.0" text="State" />
+                              <Label layoutX="396.0" layoutY="105.0" prefHeight="27.0" prefWidth="121.0" text="Street" />
+                              <Label layoutX="93.0" layoutY="305.0" prefHeight="27.0" prefWidth="103.0" text="ZIP" />
+                              <Label layoutX="403.0" layoutY="15.0" text="Last Name " />
+                              <Label layoutX="93.0" layoutY="14.0" prefHeight="28.0" prefWidth="104.0" text="First Name" />
+                              <Label layoutX="402.0" layoutY="305.0" prefHeight="27.0" prefWidth="122.0" text="Phone" />
+                              <Label layoutX="94.0" layoutY="105.0" prefHeight="27.0" prefWidth="121.0" text="Member ID" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="editMemberTab" text="Edit Member">
+               <content>
+                  <AnchorPane disable="true" minHeight="0.0" minWidth="0.0" prefHeight="442.0" prefWidth="1029.0">
+                     <children>
+                        <Pane id="bgUser" prefHeight="446.0" prefWidth="720.0">
+                           <children>
+                              <TextField fx:id="searchField11" layoutX="89.0" layoutY="7.0" prefHeight="0.0" prefWidth="221.0" />
+                              <Button fx:id="searchUser" layoutX="360.0" layoutY="7.0" mnemonicParsing="false" onAction="#searchUserName" prefHeight="25.0" text="Search by Member ID" />
+                              <TextField fx:id="editFirstName" layoutX="93.0" layoutY="95.0" />
+                              <TextField fx:id="editLastName" layoutX="402.0" layoutY="95.0" />
+                              <TextField fx:id="editStreet" layoutX="93.0" layoutY="193.0" />
+                              <TextField fx:id="editCity" layoutX="408.0" layoutY="191.0" />
+                              <TextField fx:id="editState" layoutX="93.0" layoutY="276.0" />
+                              <TextField fx:id="editZip" layoutX="402.0" layoutY="276.0" />
+                              <TextField fx:id="editPhone" layoutX="93.0" layoutY="381.0" />
+                              <Button fx:id="editBtn" layoutX="430.0" layoutY="381.0" mnemonicParsing="false" onAction="#editMember" prefHeight="25.0" prefWidth="100.0" text="Edit" />
+                              <Label layoutX="93.0" layoutY="241.0" prefHeight="27.0" prefWidth="122.0" text="State" />
+                              <Label layoutX="403.0" layoutY="241.0" prefHeight="30.0" prefWidth="103.0" text="ZIP" />
+                              <Label layoutX="404.0" layoutY="68.0" text="Last Name " />
+                              <Label layoutX="93.0" layoutY="68.0" prefHeight="35.0" prefWidth="134.0" text="First Name" />
+                              <Label layoutX="93.0" layoutY="348.0" prefHeight="27.0" prefWidth="122.0" text="Phone" />
+                              <Label layoutX="404.0" layoutY="156.0" prefHeight="27.0" prefWidth="106.0" text="City" />
+                              <Label layoutX="94.0" layoutY="158.0" prefHeight="27.0" prefWidth="121.0" text="Street" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+      <Label fx:id="lms" layoutX="416.0" layoutY="45.0" prefHeight="203.0" prefWidth="416.0" text="Library Management System" visible="false">
+         <font>
+            <Font name="System Bold Italic" size="31.0" />
+         </font>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="titleLabel" layoutX="439.0" layoutY="24.0" prefHeight="43.0" prefWidth="521.0" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="g7" layoutX="577.0" layoutY="64.0" prefHeight="81.0" prefWidth="40.0" text="G7" visible="false">
+         <font>
+            <Font name="System Bold Italic" size="31.0" />
+         </font>
+         <padding>
+            <Insets top="120.0" />
+         </padding>
+      </Label>
+      <Label fx:id="username" layoutX="37.0" layoutY="66.0" text="Username:">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font></Label>
+      <Label fx:id="password" layoutX="37.0" layoutY="167.0" text="Password:">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="user" layoutX="37.0" layoutY="110.0" prefHeight="36.0" prefWidth="181.0" />
+      <PasswordField fx:id="pass" layoutX="37.0" layoutY="217.0" prefHeight="36.0" prefWidth="181.0" />
+      <Separator layoutX="267.0" opacity="0.0" orientation="VERTICAL" prefHeight="840.0" />
+      <Separator fx:id="sepTitle" layoutX="269.0" layoutY="85.0" opacity="0.0" prefHeight="7.0" prefWidth="730.0" visible="false" />
+      <Button fx:id="loginBtn" layoutX="37.0" layoutY="280.0" mnemonicParsing="false" onAction="#login" prefHeight="29.0" prefWidth="181.0" text="Login">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Button>
+      <Label fx:id="fnameLabel" layoutX="37.0" layoutY="54.0" prefHeight="21.0" prefWidth="209.0">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lnameLabel" layoutX="37.0" layoutY="90.0" prefHeight="21.0" prefWidth="209.0">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="logoutBtn" layoutX="37.0" layoutY="531.0" mnemonicParsing="false" onAction="#logout" prefHeight="29.0" prefWidth="181.0" visible="false">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+         <graphic>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  
+                  <Label id="mylabel" layoutX="5" text="Logout" />
+               </children>
+            </HBox>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>
